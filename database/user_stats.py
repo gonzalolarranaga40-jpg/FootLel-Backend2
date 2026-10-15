@@ -1,7 +1,7 @@
 import psycopg2 as db
 
-local_db_url = "postgresql://footlel_db_user:4s67LSdik8NJwqG5N6dCeFd3W46fcZaF@dpg-daks7dlbedkc73cttod0-a.oregon-postgres.render.com/footlel_db"
-deployed_db_url = "postgresql://footlel_db_user:4s67LSdik8NJwqG5N6dCeFd3W46fcZaF@dpg-daks7dlbedkc73cttod0-a/footlel_db"
+local_db_url = "postgresql://footlel_db_f0iu_user:HApPoL4jEAIJsvxd6F7IwXW7NjzUeBoa@dpg-db8kuetg1s2s73ak7q30-a.oregon-postgres.render.com/footlel_db_f0iu"
+deployed_db_url = "postgresql://footlel_db_f0iu_user:HApPoL4jEAIJsvxd6F7IwXW7NjzUeBoa@dpg-db8kuetg1s2s73ak7q30-a/footlel_db_f0iu"
 current_db_url = local_db_url
 
 
