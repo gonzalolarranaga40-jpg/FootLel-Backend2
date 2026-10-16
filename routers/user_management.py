@@ -12,23 +12,23 @@ from database import authentication
 router = APIRouter()
 
 # ENDPOINT FUNCTIONS #
-@router.post("/user/get-user-info")
-def get_user_info(user_name: user_name.UserName):
-    user_info = user_management.get_user_info(user_name.user_name)
+@router.get("/user/get-user-info/{user_name}")
+def get_user_info(user_name: str):
+    user_info = user_management.get_user_info(user_name)
 
     if user_info is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="error de informacion del usuario: no se pudo encontrar el usuario")
 
     return { "result": "success", "user_id": int(user_info[0]), "user_email": str(user_info[1]) }
 
-@router.post("/user/eliminate-user")
-def eliminate_user(user_id: user_id.UserId):
-    if user_management.eliminate_user(user_id.user_id) == False:
+@router.delete("/user/eliminate-user/{user_id}")
+def eliminate_user(user_id: int):
+    if user_management.eliminate_user(user_id) == False:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,detail="error de eliminacion de usuario: no fue posible eliminar el usuario")
     
     return { "result": "success" }
 
-@router.post("/user/edit-user-info")
+@router.patch("/user/edit-user-info")
 def edit_user_info(user_info: user_info.UserInfo):
     if authentication.is_user_name_used_by_another_user(user_info.user_id, user_info.user_name) == False:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="error al editar perfil: ese nombre de usuario ya esta en uso")
