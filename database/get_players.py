@@ -1,8 +1,8 @@
 import psycopg2 as db
 from psycopg2 import sql
 
-local_db_url = "postgresql://footlel_db_f0iu_user:HApPoL4jEAIJsvxd6F7IwXW7NjzUeBoa@dpg-db8kuetg1s2s73ak7q30-a.oregon-postgres.render.com/footlel_db_f0iu"
-deployed_db_url = "postgresql://footlel_db_f0iu_user:HApPoL4jEAIJsvxd6F7IwXW7NjzUeBoa@dpg-db8kuetg1s2s73ak7q30-a/footlel_db_f0iu"
+local_db_url = "postgresql://footlel_db_f0iu_user:HApPoL4jEAIJsvxd6F7IwXW7NjzUeBoa@dpg-db8kuetg1s2s73ak7q30-a.oregon-postgres.render.com/Footlet"
+deployed_db_url = "postgresql://footlel_db_f0iu_user:HApPoL4jEAIJsvxd6F7IwXW7NjzUeBoa@dpg-db8kuetg1s2s73ak7q30-a/Footlet"
 current_db_url = local_db_url
 
 
