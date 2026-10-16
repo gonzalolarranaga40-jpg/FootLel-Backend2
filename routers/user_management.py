@@ -15,11 +15,12 @@ router = APIRouter()
 @router.get("/user/get-user-info/{user_name}")
 def get_user_info(user_name: str):
     user_info = user_management.get_user_info(user_name)
+    user_password = user_management.get_user_password_with_user_name(user_name)
 
-    if user_info is None:
+    if user_info is None or user_password is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="error de informacion del usuario: no se pudo encontrar el usuario")
 
-    return { "result": "success", "user_id": int(user_info[0]), "user_email": str(user_info[1]) }
+    return { "result": "success", "user_id": int(user_info[0]), "user_email": str(user_info[1]), "user_password": str(user_password) }
 
 @router.delete("/user/eliminate-user/{user_id}")
 def eliminate_user(user_id: int):
