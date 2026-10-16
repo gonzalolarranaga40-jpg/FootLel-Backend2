@@ -15,13 +15,13 @@ games_in_progress: dict[int, GameManager] = {}
 
 # ENDPOINT FUNCTIONS #
 @router.post("/game/start")
-def start_game(user_id: user_id.UserId):
+def start_game(_user_id: user_id.UserId):
     global games_in_progress
 
     game_in_progress: GameManager
-    if user_id.user_id not in games_in_progress:
-        games_in_progress[user_id.user_id] = GameManager()
-    game_in_progress = games_in_progress[user_id.user_id]
+    if _user_id.user_id not in games_in_progress:
+        games_in_progress[_user_id.user_id] = GameManager()
+    game_in_progress = games_in_progress[_user_id.user_id]
 
     row_headers: list[str]; column_headers: list[str]
     row_headers, column_headers = game_in_progress.start_game_board()
