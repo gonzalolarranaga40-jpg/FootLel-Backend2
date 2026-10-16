@@ -38,7 +38,7 @@ class GameManager():
     ]
 
     # FUNCTIONS #
-    def start_game_board() -> tuple[list[str], list[str]]:
+    def start_game_board(self) -> tuple[list[str], list[str]]:
         # set "is_playing" to true #
         global is_playing
         is_playing = True
@@ -49,7 +49,7 @@ class GameManager():
         # return the headers that the "create_game_board" func generated #
         return teams_row, nationalities_column
 
-    def stop_game_board():
+    def stop_game_board(self):
         global teams_row, nationalities_column, game_turn, is_playing, player_names_matrix, player_slots_matrix
 
         # reset game variables #
@@ -70,7 +70,7 @@ class GameManager():
             ["", "", ""]
         ]
 
-    def create_game_board():
+    def create_game_board(self):
         global teams_row, nationalities_column, player_names_matrix, player_slots_matrix
 
         # create the variables that will store the game board #
@@ -123,7 +123,7 @@ class GameManager():
             player_names_matrix[row][column] = players[i]
             player_slots_matrix[row][column] = 0
 
-    def next_turn() -> bool:
+    def next_turn(self) -> bool:
         # increment the turn int #
         global game_turn
         game_turn += 1
@@ -131,7 +131,7 @@ class GameManager():
         # return True if "game_turn" is odd and False if its even #
         return bool(game_turn % 2 != 0)
 
-    def player_guessed(player_guess: str) -> tuple[list[list[int]], bool, bool, bool] | None:
+    def player_guessed(self, player_guess: str) -> tuple[list[list[int]], bool, bool, bool] | None:
 
         # error out if the player is not in a game #
         if is_playing == False:
@@ -173,7 +173,7 @@ class GameManager():
                 return player_slots_matrix, True, False, False
         return player_slots_matrix, False, False, False
 
-    def player2_guessed(player2_guess: str) -> tuple[list[list[int]], bool, bool, bool] | None:
+    def player2_guessed(self, player2_guess: str) -> tuple[list[list[int]], bool, bool, bool] | None:
 
         # error out if the player is not in a game #
         if is_playing == False:
@@ -215,7 +215,7 @@ class GameManager():
                 return player_slots_matrix, True, False, False
         return player_slots_matrix, False, False, False
 
-    def ai_guessed() -> tuple[list[list[int]], bool, bool] | None:
+    def ai_guessed(self) -> tuple[list[list[int]], bool, bool] | None:
         
         # error out if the player is not in a game #
         if is_playing == False:
@@ -302,11 +302,11 @@ class GameManager():
         return player_slots_matrix, False, False
 
     # simple function that returns if the value is inside a range #
-    def _in_range(value: int, minimum: int, maximum: int) -> bool:
+    def _in_range(self, value: int, minimum: int, maximum: int) -> bool:
         return minimum <= value <= maximum
 
     # function that checks the board for any winning lines #
-    def check_winning_lines() -> tuple[bool, bool]:
+    def check_winning_lines(self) -> tuple[bool, bool]:
         for i in range(0, len(winning_lines), 1):
             line_is_from_the_player: bool = False
             for j in range(0, len(winning_lines[i]), 1):
