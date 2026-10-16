@@ -20,8 +20,8 @@ def start_game(user_id: user_id.UserId):
 
     game_in_progress: GameManager
     if user_id.user_id not in games_in_progress:
-        games_in_progress[user_id] = GameManager()
-    game_in_progress = games_in_progress[user_id]
+        games_in_progress[user_id.user_id] = GameManager()
+    game_in_progress = games_in_progress[user_id.user_id]
 
     row_headers: list[str]; column_headers: list[str]
     row_headers, column_headers = game_in_progress.start_game_board()
