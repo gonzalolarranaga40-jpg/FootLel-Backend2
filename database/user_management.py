@@ -64,6 +64,29 @@ def get_user_password_with_user_name(user_name: str):
         print(e)
         return None
 
+def get_user_id_with_user_name(user_name: str):
+    """Get active user id with user_name: str"""
+    try:
+        conn = db.connect(current_db_url)
+        run = conn.cursor()
+        
+        run.execute(
+        """SELECT pk_user_id FROM users WHERE (user_name = %s) AND user_eliminated = FALSE""", (user_name,)
+        )
+        user_id = run.fetchone()
+        conn.commit()
+
+        if user_id is None:
+            conn.rollback()
+            conn.close()
+            return None
+        
+        conn.close()
+        return user_id[0]
+    except Exception as e:
+        print(e)
+        return None
+
 def get_user_id(user_email: str):
     """Get active user id with user_email: str"""
     try:

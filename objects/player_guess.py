@@ -3,5 +3,5 @@ from pydantic import BaseModel
 
 # CREATE THE OBJECT #
 class PlayerGuess(BaseModel):
-    user_id: int
+    user_strid: str
     player_guess: str

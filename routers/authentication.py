@@ -25,7 +25,12 @@ def user_login(user_login_credentials: user_login_credentials.UserLoginCredentia
     if user_password != user_login_credentials.user_password:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="error de login: contrasenia incorrecta")
 
-    return { "result": "success" }
+    user_id = user_management.get_user_id_with_user_name(user_login_credentials.user_name)
+
+    if user_id is None:
+        print("advertencia de login: no se pudo conseguir el user_id durante el login")
+
+    return { "result": "success", "user_id": user_id }
 
 @router.post("/auth/user-register")
 def user_register(user_register_credentials: user_register_credentials.UserRegisterCredentials):
@@ -42,7 +47,8 @@ def user_register(user_register_credentials: user_register_credentials.UserRegis
 
 @router.post("/auth/guest-login")
 def guest_login():
-    guest_name: str = "guest_" + str(randint(1000, 9999))
+    # devolver el user_id
+    guest_name: str = "guest_" + str(randint(10000, 99999))
 
     if authentication.is_user_name_available(guest_name) == False:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="error de modo invitado: ese nombre de usuario ya esta en uso, intente de vuelta")
